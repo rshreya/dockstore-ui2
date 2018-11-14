@@ -22,7 +22,6 @@
               "src/manifest.json"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/jquery.qtip.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap-social/bootstrap-social.css",
@@ -46,7 +45,6 @@
               "node_modules/ace-builds/src-min-noconflict/mode-perl.js",
               "node_modules/ace-builds/src-min-noconflict/theme-idle_fingers.js",
               "node_modules/ace-builds/src-min-noconflict/ext-searchbox.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/cytoscape/dist/cytoscape.js",
               "node_modules/dagre/dist/dagre.min.js",
               "node_modules/cytoscape-dagre/cytoscape-dagre.js",
@@ -119,7 +117,6 @@
               "node_modules/ace-builds/src-min-noconflict/mode-text.js",
               "node_modules/ace-builds/src-min-noconflict/theme-idle_fingers.js",
               "node_modules/ace-builds/src-min-noconflict/ext-searchbox.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/cytoscape/dist/cytoscape.js",
               "node_modules/dagre/dist/dagre.min.js",
               "node_modules/cytoscape-dagre/cytoscape-dagre.js",
@@ -127,7 +124,6 @@
               "node_modules/cytoscape-qtip/cytoscape-qtip.js"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/jquery.qtip.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap-social/bootstrap-social.css",

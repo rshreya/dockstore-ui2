@@ -14,35 +14,35 @@
   ~    limitations under the License.
   -->
 <mat-toolbar color="primary">
-  <mat-toolbar-row class="toolbar-holder hidden-xs">
+  <mat-toolbar-row class="toolbar-holder d-none d-sm-block">
     <div [className]="isExtended ? 'container w-100 navbar-fluid' : 'container navbar-fluid'">
       <span class="flex-toolbar">
         <a id="home-nav-button" (click)="resetPageNumber()" routerLink="" alt="dockstore logo">
           <img src="../assets/images/dockstore/logo.png">
         </a>
-        <a mat-button class="icon" (click)="resetPageNumber()" routerLink="/tools">
-            <img class="site-icons-small hidden-sm" src="../assets/images/dockstore/dockstore-tools-purple.png"> Tools
+        <a class="icon" (click)="resetPageNumber()" routerLink="/tools">
+            <img class="site-icons-small d-none d-md-inline" src="../assets/images/dockstore/dockstore-tools-purple.png">Tools
         </a>
         <a mat-button class="icon" (click)="resetPageNumber()" routerLink="/workflows">
-            <img class="site-icons-small hidden-sm" src="../assets/images/dockstore/dockstore-workflows-purple.png"> Workflows
+            <img class="site-icons-small d-none d-md-inline" src="../assets/images/dockstore/dockstore-workflows-purple.png"> Workflows
         </a>
         <a mat-button class="icon" routerLink="/search">
-            <img class="site-icons-small hidden-sm" src="../assets/images/dockstore/search-button.png"> Search
+            <img class="site-icons-small d-none d-md-inline" src="../assets/images/dockstore/search-button.png"> Search
         </a>
         <a mat-button class="icon" href="http://docs.dockstore.org/">
-            <img class="site-icons-small hidden-sm" src="../assets/images/dockstore/dockstore-documentation.png"> Docs
+            <img class="site-icons-small d-none d-md-inline" src="../assets/images/dockstore/dockstore-documentation.png"> Docs
         </a>
         <span class="spacer"></span>
         <a mat-button class="icon" id="my-tools-nav-button" *ngIf="isLoggedIn" routerLink="/my-tools">
-          <img class="site-icons-small hidden-sm" src="assets/images/dockstore/dockstore-tools-purple.png"> My Tools
+          <img class="site-icons-small d-none d-md-inline" src="assets/images/dockstore/dockstore-tools-purple.png"> My Tools
         </a>
         <a mat-button class="icon" id="my-workflows-nav-button" *ngIf="isLoggedIn" routerLink="/my-workflows">
-          <img class="site-icons-small hidden-sm" src="assets/images/dockstore/dockstore-workflows-purple.png"> My Workflows
+          <img class="site-icons-small d-none d-md-inline" src="assets/images/dockstore/dockstore-workflows-purple.png"> My Workflows
         </a>
         <a *ngIf="!isLoggedIn" mat-raised-button color="accent" routerLink="/login">Login/Register</a>
         <button *ngIf="isLoggedIn" mat-raised-button color="accent" id="dropdown-main" [matMenuTriggerFor]="menuLarge">
-          <mat-icon class="hidden-lg">account_circle</mat-icon>
-          <span class="hidden-md hidden-sm">{{user?.username}}</span>
+          <mat-icon class="d-none d-lg-inline">account_circle</mat-icon>
+          <span class="d-inline d-lg-none">{{user?.username}}</span>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menuLarge="matMenu">
@@ -67,7 +67,7 @@
       </span>
     </div>
   </mat-toolbar-row>
-  <mat-toolbar-row class="visible-xs toolbar-holder toolbar-holder-sm clearfix">
+  <mat-toolbar-row class="d-sm-none toolbar-holder toolbar-holder-sm clearfix">
     <div class="container-fluid navbar-holder">
       <a id="home-nav-button-mobile" (click)="resetPageNumber()" routerLink="">
         <img src="../assets/images/dockstore/logo.png">
@@ -75,8 +75,8 @@
       <span class="spacer"></span>
       <a *ngIf="!isLoggedIn" class="pull-right" mat-raised-button color="accent" routerLink="/login">Login</a>
       <button class="pull-right" *ngIf="isLoggedIn" mat-raised-button color="accent" id="dropdown-main-xs" [matMenuTriggerFor]="menuMobile">
-        <mat-icon class="hidden-lg">account_circle</mat-icon>
-        <span class="hidden-md hidden-sm hidden-xs">{{user?.username}}</span>
+        <mat-icon class="d-none d-lg-inline">account_circle</mat-icon>
+        <span class="d-inline d-lg-none">{{user?.username}}</span>
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #menuMobile="matMenu">
@@ -101,7 +101,7 @@
     </div>
   </mat-toolbar-row>
 
-  <mat-toolbar-row class="visible-xs toolbar-holder text-center toolbar-holder-sm">
+  <mat-toolbar-row class="d-sm-none toolbar-holder text-center toolbar-holder-sm">
     <div class="container-fluid navbar-holder">
       <a mat-button class="icon icon-sm" (click)="resetPageNumber()" routerLink="/tools">Tools</a>
       <a mat-button class="icon icon-sm" (click)="resetPageNumber()" routerLink="/workflows">Workflows</a>
@@ -110,7 +110,7 @@
     </div>
   </mat-toolbar-row>
 
-  <mat-toolbar-row class="visible-xs toolbar-holder text-center toolbar-holder-sm">
+  <mat-toolbar-row class="d-sm-none toolbar-holder text-center toolbar-holder-sm">
     <div class="container-fluid navbar-holder">
       <span *ngIf="isLoggedIn">
         <a mat-button class="icon my-icon-sm" id="my-tools-nav-button-xs" routerLink="/my-tools">My Tools</a>
