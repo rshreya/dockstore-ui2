@@ -29,8 +29,8 @@
 
   <div *ngIf="showSecondRow">
     <h5 class="d-block text-center" style="color:#21335B">Works With</h5><br />
-    <div class="row text-center">
-    <div *ngFor="let partner of partners" class="col-md-3 col-sm-6 sponsor-row">
+    <div class="row">
+    <div *ngFor="let partner of partners" class="col col-md-3 col-sm-6 sponsor-row">
       <a href="{{partner.url}}" target="_blank">
         <img [src]="partner.current" class="img-responsive center-image"
         (mouseover)="onMouseOver(partner)"
