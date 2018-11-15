@@ -14,13 +14,13 @@
   ~    limitations under the License.
   -->
 
-<div class="staging-banner" *ngIf="showBanner">
-    <div class="container">
-        <div class="row" id="navigation">
-            <ul class="nav">
-              <li><strong>Staging Mode</strong>: Any actions done on this site with not impact production.</li>
-              <li *ngIf="mismatchedVersion"><strong>ERROR:</strong> The webservice version running (<strong>{{versionFromAPI}}</strong>) does not match the webservice version used to build the UI (<strong>{{versionBuiltWith}}</strong>)</li>
-            </ul>
-        </div>
-    </div>
-</div>
+  <div class="staging-banner" *ngIf="showBanner">
+      <div class="container">
+          <div class="row" id="navigation">
+              <ul class="nav">
+                  <li class="nav-item"><strong>Staging Mode</strong>: Any actions done on this site with not impact production.</li>
+                  <li *ngIf="mismatchedVersion" class="nav-item"><strong>ERROR:</strong> The webservice version running (<strong>{{versionFromAPI}}</strong>) does not match the webservice version used to build the UI (<strong>{{versionBuiltWith}}</strong>)</li>
+              </ul>
+          </div>
+      </div>
+  </div>
