@@ -15,8 +15,8 @@
   -->
 
 <div class="container">
-  <div class="row text-center">
-    <h5 style="color:#21335B">In Affiliation With</h5><br />
+    <h5 class="d-block row text-center" style="color:#21335B">In Affiliation With</h5>
+  <div class="row">
     <!-- TODO: Will need to adjust spacing once the Broad Logo is added -->
     <div *ngFor="let sponsor of sponsors" class="col-md-3 col-sm-6 sponsor-row">
       <a href="{{sponsor.url}}" target="_blank">
@@ -27,8 +27,9 @@
     </div>
   </div>
 
-  <div *ngIf="showSecondRow" class="row text-center">
-    <h5 style="color:#21335B">Works With</h5><br />
+  <div *ngIf="showSecondRow">
+    <h5 class="d-block text-center" style="color:#21335B">Works With</h5><br />
+    <div class="row text-center">
     <div *ngFor="let partner of partners" class="col-md-3 col-sm-6 sponsor-row">
       <a href="{{partner.url}}" target="_blank">
         <img [src]="partner.current" class="img-responsive center-image"
@@ -36,5 +37,6 @@
         (mouseout)="onMouseOut(partner)"/>
       </a>
     </div>
+  </div>
   </div>
 </div>
