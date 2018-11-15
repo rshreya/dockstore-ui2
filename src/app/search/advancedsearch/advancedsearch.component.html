@@ -13,8 +13,8 @@
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
   -->
-
-<div *ngIf="isModalShown" [config]="{ show: true}" class="modal fade" bsModal #advancedSearchModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" (onHidden)="onHidden()">
+<div *ngIf="isModalShown" [config]="{ show: true}" class="modal fade" bsModal #advancedSearchModal="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true" (onHidden)="onHidden()">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -27,9 +27,9 @@
         <p>Find tools and workflows with
           <span *ngIf="searchMode === 'description'"> a </span>
           <span class="btn-group" dropdown>
-             <button dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">
-               {{searchMode}} <span class="caret"></span>
-             </button>
+            <button dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">
+              {{searchMode}} <span class="caret"></span>
+            </button>
             <ul *dropdownMenu class="dropdown-menu" role="menu">
               <li *ngIf="searchMode !== 'description'" role="menuitem">
                 <a class="dropdown-item" (click)="switchSearchMode('description')">description</a>
@@ -44,48 +44,40 @@
           <span *ngIf="searchMode === 'files'"> have </span>
           ...
         </p>
-        <div class="form-group form-group-sm">
-          <label class="col-sm-4 col-md-4 col-lg-4 control-label">
-            All these words:
-          </label>
-          <div class="col-sm-8 col-md-8 col-lg-8">
-            <input [(ngModel)]="ANDSplitFilter" type="text" class="form-control" name="reference" matTooltip="Words that must appear" placeholder="e.g. bcbio"
-            />
+        <form>
+          <mat-form-field class="w-100">
+            <mat-label>All of these words:</mat-label>
+            <input matInput [(ngModel)]="ANDSplitFilter" type="text" name="reference" matTooltip="Words that must appear"
+              placeholder="e.g. bcbio" />
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>The exact word or phrase:</mat-label>
+            <input matInput [(ngModel)]="ANDNoSplitFilter" type="text" name="reference" matTooltip="Phrase that must appear"
+              placeholder="e.g. cgp" />
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>
+              Any of these words:
+            </mat-label>
+            <input matInput [(ngModel)]="ORFilter" type="text" name="reference" matTooltip="At least one of these words must appear"
+              placeholder="e.g. wxs" />
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>
+              None of these words:
+            </mat-label>
+            <input matInput [(ngModel)]="NOTFilter" type="text" name="reference" matTooltip="These words must not appear"
+              placeholder="e.g. wgs" />
+          </mat-form-field>
+          <div class="row">
+            <div class="col">
+              <button mat-raised-button type="button" (click)="clearAll()" class="w-100">Clear All</button>
+            </div>
+            <div class="col">
+              <button mat-raised-button color="primary" type="button" (click)="advancedSearch()" class="w-100">Advanced Search</button>
+            </div>
           </div>
-        </div>
-        <div class="form-group form-group-sm">
-          <label class="col-sm-4 col-md-4 col-lg-4 control-label">
-            The exact word or phrase:
-          </label>
-          <div class="col-sm-8 col-md-8 col-lg-8">
-            <input [(ngModel)]="ANDNoSplitFilter" type="text" class="form-control" name="reference" matTooltip="Phrase that must appear" placeholder="e.g. cgp"
-            />
-          </div>
-        </div>
-        <div class="form-group form-group-sm">
-          <label class="col-sm-4 col-md-4 col-lg-4 control-label">
-            Any of these words:
-          </label>
-          <div class="col-sm-8 col-md-8 col-lg-8">
-            <input [(ngModel)]="ORFilter" type="text" class="form-control" name="reference" matTooltip="At least one of these words must appear" placeholder="e.g. wxs" />
-          </div>
-        </div>
-        <div class="form-group form-group-sm">
-          <label class="col-sm-4 col-md-4 col-lg-4 control-label">
-            None of these words:
-          </label>
-          <div class="col-sm-8 col-md-8 col-lg-8">
-            <input [(ngModel)]="NOTFilter" type="text" class="form-control" name="reference" matTooltip="These words must not appear" placeholder="e.g. wgs" />
-          </div>
-        </div>
-        <div class="btn-group btn-group-justified">
-          <div class="btn-group">
-            <button type="button" (click)="clearAll()" class="btn btn-secondary btn-sm">Clear All</button>
-          </div>
-          <div class="btn-group">
-            <button type="button" (click)="advancedSearch()" class="btn btn-primary btn-sm">Advanced Search</button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
