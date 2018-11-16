@@ -176,10 +176,10 @@
     <label matTooltip="Description of tool obtained from tool descriptor">
       Description
     </label>
-    <div *ngIf="tool?.description" class="well well-sm">
+    <div *ngIf="tool?.description" class="card card-body bg-light">
       <ngx-md [data]="tool?.description"></ngx-md>
     </div>
-    <div *ngIf="!tool?.description && !isPublic" class="well well-sm">
+    <div *ngIf="!tool?.description && !isPublic" class="card card-body bg-light">
       <span class="glyphicon glyphicon-warning-sign"></span>
       <span ng-show="!containerObj.description">
         No description associated with this tool. See

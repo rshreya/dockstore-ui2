@@ -13,7 +13,6 @@
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
   -->
-
 <div class="row m-1" *ngIf="error  || missingWarning">
   <div class="col-md-12" *ngIf="!isWorkflowPublic">
     <div class="alert alert-warning" ng-class="!editMode ? 'push-top' : ''" role="alert" *ngIf="missingWarning">
@@ -29,8 +28,10 @@
   <div class="col-md-10 col-md-offset-1">
     <h2 class="text-center">The workflow linked to could not be found!</h2>
     <p class="text-center">
-      Workflows have been updated to include the Git registry in their path for identification purposes. The workflow linked to did not have
-      a valid Git registry in the path. In most cases you were looking for <strong><a href="/workflows/{{githubPath}}">{{githubPath}}</a></strong>. If not then it
+      Workflows have been updated to include the Git registry in their path for identification purposes. The workflow linked to did not
+      have
+      a valid Git registry in the path. In most cases you were looking for <strong><a href="/workflows/{{githubPath}}">{{githubPath}}</a></strong>.
+      If not then it
       may be one of the following.
     </p>
     <ul class="text-center list-inline">
@@ -44,21 +45,19 @@
   <div class="col-12 col-md-7">
     <h3 id="workflow-path">
       <span id="verifiedIcon" *ngIf="workflow?.versionVerified">
-        <a href= {{getVerifiedLink()}} class="verified-check">
+        <a href={{getVerifiedLink()}} class="verified-check">
           <span class="glyphicon glyphicon-ok" matTooltip="Verified"></span>
         </a>
       </span>
       {{ title }}<span *ngIf="workflow?.workflowVersions.length > 0">:<span class="ds-green">{{ selectedVersion?.name }}</span></span>
     </h3>
-
     <div *ngIf="!publicPage && workflow.workflowVersions && workflow.workflowVersions.length > 0" class="input-group">
       <mat-form-field>
-          <mat-select [(value)]="selectedVersion">
-            <mat-option *ngFor="let workflowVersion of workflow.workflowVersions" [value]="workflowVersion">{{workflowVersion.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <mat-select [(value)]="selectedVersion">
+          <mat-option *ngFor="let workflowVersion of workflow.workflowVersions" [value]="workflowVersion">{{workflowVersion.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-
     <p class="update">
       Last Modified: {{ (extendedWorkflow$ | async)?.agoMessage || 'n/a' }}
     </p>
@@ -75,8 +74,10 @@
   <div *ngIf="!publicPage" class="col-12 col-md-5">
     <h3>
       <div class="pull-right my-entry-button-group">
-        <button mat-flat-button id="publishButton" class="mr-2" color="accent" (click)="publish()" [(ngModel)]="published" [disabled]="(isRefreshing$ | async) || publishDisable()" [matTooltip]="pubUnpubMessage" btnCheckbox>{{workflow?.is_published ? 'Unpublish' : 'Publish'}}</button>
-        <button mat-flat-button color="primary" (click)="refresh()" [disabled]="(isRefreshing$ | async)" *ngIf="!isHosted() && canWrite" matTooltip="Sync the workflow with the source control repository">Refresh</button>
+        <button mat-flat-button id="publishButton" class="mr-2" color="accent" (click)="publish()" [(ngModel)]="published" [disabled]="(isRefreshing$ | async) || publishDisable()"
+          [matTooltip]="pubUnpubMessage" btnCheckbox>{{workflow?.is_published ? 'Unpublish' : 'Publish'}}</button>
+        <button mat-flat-button color="primary" (click)="refresh()" [disabled]="(isRefreshing$ | async)" *ngIf="!isHosted() && canWrite"
+          matTooltip="Sync the workflow with the source control repository">Refresh</button>
       </div>
     </h3>
   </div>
@@ -91,26 +92,21 @@
         </button>
       </mat-chip-list>
     </span>
-
     <span *ngIf="labelsEditMode && !isWorkflowPublic">
       <mat-form-field style="width: 100%;">
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let label of workflowEditData?.labels" [removable]="true"
-            (removed)="removeLabel(label)">
+          <mat-chip *ngFor="let label of workflowEditData?.labels" [removable]="true" (removed)="removeLabel(label)">
             {{label}}
             <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="New label..."
-                 [matChipInputFor]="chipList"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 [matChipInputAddOnBlur]="true"
-                 (matChipInputTokenEnd)="addToLabels($event)"/>
+          <input placeholder="New label..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addToLabels($event)" />
         </mat-chip-list>
       </mat-form-field>
-      <button type="button"(click)="cancelLabelChanges()" class="btn btn-link" *ngIf="labelsEditMode && !isWorkflowPublic">
+      <button type="button" (click)="cancelLabelChanges()" class="btn btn-link" *ngIf="labelsEditMode && !isWorkflowPublic">
         <span class="glyphicon glyphicon-remove"></span> Cancel
       </button>
-      <button type="button"(click)="submitWorkflowEdits()" class="btn btn-link" *ngIf="labelsEditMode && !isWorkflowPublic">
+      <button type="button" (click)="submitWorkflowEdits()" class="btn btn-link" *ngIf="labelsEditMode && !isWorkflowPublic">
         <span class="glyphicon glyphicon-floppy-save"></span> Save
       </button>
     </span>
@@ -118,12 +114,15 @@
 </div>
 <div class="row m-1" *ngIf="!starGazersClicked && !showRedirect">
   <div class="ds-tabs col-sm-12" [ngClass]="{'col-md-10 col-lg-9': isWorkflowPublic}">
-    <mat-tab-group [selectedIndex]="selected.value" dynamicHeight class="ds-tabs" id="workflow_tabs" #entryTabs  (selectedTabChange)="selectedTabChange($event)" mat-stretch-tabs>
+    <mat-tab-group [selectedIndex]="selected.value" dynamicHeight class="ds-tabs" id="workflow_tabs" #entryTabs (selectedTabChange)="selectedTabChange($event)"
+      mat-stretch-tabs>
       <mat-tab id="infoTab" label="Info" id="infoTab">
-        <app-info-tab [validVersions]="validVersions" [extendedWorkflow]="(extendedWorkflow$ | async)" [defaultVersion]="defaultVersion" [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-info-tab>
+        <app-info-tab [validVersions]="validVersions" [extendedWorkflow]="(extendedWorkflow$ | async)" [defaultVersion]="defaultVersion"
+          [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-info-tab>
       </mat-tab>
       <mat-tab id="launchTab" label="Launch">
-        <app-launch *ngIf="workflow?.workflowVersions.length > 0; else noVersions" [selectedVersion]="selectedVersion" [basePath]="workflow?.path" [path]="workflow?.full_workflow_path" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner" [mode]="workflow?.mode"></app-launch>
+        <app-launch *ngIf="workflow?.workflowVersions.length > 0; else noVersions" [selectedVersion]="selectedVersion" [basePath]="workflow?.path"
+          [path]="workflow?.full_workflow_path" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner" [mode]="workflow?.mode"></app-launch>
         <ng-template #noVersions>
           <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> No versions exist for this workflow.
@@ -132,7 +131,9 @@
       </mat-tab>
       <mat-tab id="versionsTab" label="Versions">
         <div *ngIf="validVersions && !isStub()">
-          <app-versions-workflow [versions]="(extendedWorkflow$ | async)?.workflowVersions" (selectedVersionChange)="onSelectedVersionChange($event)" [verifiedSource]="(extendedWorkflow$ | async)?.verifiedSources" [workflowId]="workflow?.id" [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner">
+          <app-versions-workflow [versions]="(extendedWorkflow$ | async)?.workflowVersions" (selectedVersionChange)="onSelectedVersionChange($event)"
+            [verifiedSource]="(extendedWorkflow$ | async)?.verifiedSources" [workflowId]="workflow?.id" [selectedVersion]="selectedVersion"
+            [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner">
           </app-versions-workflow>
         </div>
         <div *ngIf="isStub()" class="alert alert-warning" role="alert">
@@ -141,20 +142,24 @@
       </mat-tab>
       <mat-tab id="fileTab" label="Files">
         <ng-template matTabContent>
-        <div *ngIf="validVersions && !isStub() && !isHosted()">
-          <app-files-workflow *ngIf="validVersions" [entrypath]="workflow.full_workflow_path" [id]="workflow?.id" [versions]="validVersions" [default]="defaultVersion" [selectedVersion]="selectedVersion" [descriptorType]="(descriptorType$ | async)" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner">
-          </app-files-workflow>
-        </div>
-        <div *ngIf="validVersions && isHosted()">
-          <app-workflow-file-editor *ngIf="validVersions && currentTab === 'files'" [entrypath]="workflow.full_workflow_path" [id]="workflow?.id" [versions]="validVersions" [default]="defaultVersion" [selectedVersion]="selectedVersion" [publicPage]="publicPage" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner">
-          </app-workflow-file-editor>
-        </div>
-        <div *ngIf="isStub()" class="alert alert-warning" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see files, please refresh the workflow.
-        </div>
-      </ng-template>
+          <div *ngIf="validVersions && !isStub() && !isHosted()">
+            <app-files-workflow *ngIf="validVersions" [entrypath]="workflow.full_workflow_path" [id]="workflow?.id" [versions]="validVersions"
+              [default]="defaultVersion" [selectedVersion]="selectedVersion" [descriptorType]="(descriptorType$ | async)" [canRead]="canRead"
+              [canWrite]="canWrite" [isOwner]="isOwner">
+            </app-files-workflow>
+          </div>
+          <div *ngIf="validVersions && isHosted()">
+            <app-workflow-file-editor *ngIf="validVersions && currentTab === 'files'" [entrypath]="workflow.full_workflow_path" [id]="workflow?.id"
+              [versions]="validVersions" [default]="defaultVersion" [selectedVersion]="selectedVersion" [publicPage]="publicPage" [canRead]="canRead"
+              [canWrite]="canWrite" [isOwner]="isOwner">
+            </app-workflow-file-editor>
+          </div>
+          <div *ngIf="isStub()" class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see files, please refresh the workflow.
+          </div>
+        </ng-template>
       </mat-tab>
-      <mat-tab id="toolsTab"  label="Tools">
+      <mat-tab id="toolsTab" label="Tools">
         <div *ngIf="validVersions && !isStub()">
           <app-tool-tab [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-tool-tab>
         </div>
@@ -165,12 +170,13 @@
       <mat-tab id="dagTab" label="DAG">
         <ng-template matTabContent>
           <div *ngIf="validVersions && !isStub()">
-            <app-dag [id]="workflow?.id" [validVersions]="validVersions" [defaultVersion]="defaultVersion" [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-dag>
+            <app-dag [id]="workflow?.id" [validVersions]="validVersions" [defaultVersion]="defaultVersion" [selectedVersion]="selectedVersion"
+              [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-dag>
           </div>
-        <div *ngIf="isStub()" class="alert alert-warning" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see the DAG, please refresh the workflow.
-        </div>
-      </ng-template>
+          <div *ngIf="isStub()" class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see the DAG, please refresh the workflow.
+          </div>
+        </ng-template>
       </mat-tab>
       <mat-tab *ngIf="!isPublic() && isHosted() && isOwner" id="permissionsTab" label="Permissions">
         <app-permissions [workflow]="workflow"></app-permissions>
@@ -178,17 +184,18 @@
     </mat-tab-group>
     <div *ngIf="publicPage" class="mt-2" id='discourse-comments'></div>
   </div>
+  <!-- This begins the side block -->
   <div class="side-block col-md-2 col-lg-3 ng-scope" *ngIf="isWorkflowPublic">
-    <div class="panel panel-default" *ngIf="workflow">
-      <div class="panel-heading">
-        <h3>Recent Versions</h3>
-      </div>
-      <div class="panel-body">
+    <mat-card class="m-1" *ngIf="workflow">
+      <mat-card-header>
+        <mat-card-title>Recent Versions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div>
           <span *ngFor="let sortedVersion of sortedVersions">
             <p class="top-down-padding m-0">
               <span id="verifiedIcon" *ngIf="sortedVersion?.verified">
-                <a href= {{getVerifiedLink()}} class="verified-check">
+                <a href={{getVerifiedLink()}} class="verified-check">
                   <span class="glyphicon glyphicon-ok" matTooltip="Verified"></span>
                 </a>
               </span>
@@ -199,13 +206,13 @@
           </span>
           <a (click)="selectTab(2)">See all versions</a>
         </div>
-      </div>
-    </div>
-    <div class="panel panel-default" *ngIf="!isStub() && !isHosted()">
-      <div class="panel-heading">
-        <h3>Source Repositories</h3>
-      </div>
-      <div class="panel-body">
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="m-1" *ngIf="!isStub() && !isHosted()">
+      <mat-card-header>
+        <mat-card-title>Source Repositories</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div class="container-source-repos">
           <p>
             <span *ngIf="(extendedWorkflow$ | async).provider">
@@ -216,20 +223,21 @@
             </span>
           </p>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
     <app-launch-third-party [workflow]="workflow" [selectedVersion]="selectedVersion"></app-launch-third-party>
     <app-verified-by [version]="selectedVersion"></app-verified-by>
-    <div class="panel panel-default" *ngIf="workflow">
-      <div class="panel-heading">
-        <h3>Sharing</h3>
-      </div>
-      <div class="panel-body">
+    <mat-card *ngIf="workflow">
+      <mat-card-header>
+        <mat-card-title>Sharing</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div class="container-sharing">
-          <share-buttons [include]="['facebook','twitter','linkedin','reddit']" [show]="5" [showCount]="true" [url]="shareURL" [autoSetMeta]="false"></share-buttons>
+          <share-buttons [include]="['facebook','twitter','linkedin','reddit']" [show]="5" [showCount]="true" [url]="shareURL"
+            [autoSetMeta]="false"></share-buttons>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
     <!-- Re-enable the below once ga4gh/dockstore#442 is complete -->
     <!-- <div class="panel panel-default">
       <div class="panel-heading">
@@ -242,4 +250,5 @@
       </div>
     </div> -->
   </div>
+  <!-- This ends the side block -->
 </div>
