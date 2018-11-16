@@ -169,7 +169,6 @@ export class VersionModalComponent implements OnInit, AfterViewChecked, OnDestro
 
   onHidden() {
     this.versionModalService.setCurrentMode(null);
-    this.matDialog.closeAll();
   }
 
   setMode(mode: TagEditorMode) {
