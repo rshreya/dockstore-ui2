@@ -35,12 +35,12 @@
           <span class="glyphicon glyphicon-export"></span>Export to PNG</a>
         <!-- This following div is shared by both viewers -->
         <div class="btn-group pull-right" role="group" style="width:auto">
-          <button id="dag_fullscreen" (click)="toggleExpand()" matTooltip="Toggle fullscreen" class="dag-button btn btn-default">
-            <span *ngIf="!expanded" class="glyphicon glyphicon-resize-full" id="resize-full-button"></span>
-            <span  *ngIf="expanded" class="glyphicon glyphicon-resize-small" id="resize-small-button"></span>
+          <button mat-button id="dag_fullscreen" (click)="toggleExpand()" matTooltip="Toggle fullscreen" class="dag-button">
+            <mat-icon *ngIf="!expanded" id="resize-full-button">fullscreen</mat-icon>
+            <mat-icon *ngIf="expanded" id="resize-small-button">fullscreen_exit</mat-icon>
           </button>
-          <button id="dag_reload" (click)="reset()" class="dag-button btn btn-default" matTooltip="Reset">
-            <span class="glyphicon glyphicon-screenshot"></span>
+          <button mat-button id="dag_reload" (click)="reset()" class="dag-button" matTooltip="Reset">
+              <mat-icon>center_focus_strong</mat-icon>
           </button>
         </div>
       </div>
