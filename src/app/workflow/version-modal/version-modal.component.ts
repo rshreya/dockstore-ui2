@@ -39,7 +39,6 @@ export interface Dialogdata {
 }
 
 @Component({
-  selector: 'app-version-modal',
   templateUrl: './version-modal.component.html',
   styleUrls: ['./version-modal.component.css']
 })
@@ -71,6 +70,9 @@ export class VersionModalComponent implements OnInit, AfterViewChecked, OnDestro
   constructor(private versionModalService: VersionModalService, private dateService: DateService,
     private sessionQuery: SessionQuery, private workflowQuery: WorkflowQuery, private alertQuery: AlertQuery,
     private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: Dialogdata) {
+      this.canRead = this.data.canRead;
+      this.canWrite = this.data.canWrite;
+      this.isOwner = this.data.isOwner;
   }
 
   ngOnInit() {
