@@ -14,3 +14,22 @@
  *    limitations under the License.
  */
 
+ /*
+  * There's no button groups for regular buttons in Angular Material.
+  * This is to make the right button look connected to the left button.
+  */
+.right-button {
+  min-width: 40px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/*
+  * There's no button groups for regular buttons in Angular Material.
+  * This is to make the left button look connected to the right button.
+  */
+.left-button {
+  min-width: 40px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

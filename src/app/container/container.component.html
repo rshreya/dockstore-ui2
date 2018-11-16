@@ -25,20 +25,18 @@
     </div>
   </div>
 </div>
-
 <div class="row m-1" *ngIf="tool?.mode == 'MANUAL_IMAGE_PATH' && tool?.tags?.length === 0">
   <div class="alert alert-info" role="alert">
     <span class="glyphicon glyphicon-warning-sign"></span>
     Your manually added tool does not have any tags. Go to the versions tab to add one.
   </div>
 </div>
-
 <div class="row m-1">
   <ngx-json-ld [json]="schema"></ngx-json-ld>
   <div class="col-12 col-md-7">
     <h3 id="tool-path">
       <span id="verifiedIcon" *ngIf="(extendedTool$ | async)?.versionVerified">
-        <a href= {{getVerifiedLink()}} class="verified-check">
+        <a href={{getVerifiedLink()}} class="verified-check">
           <span class="glyphicon glyphicon-ok" matTooltip="Verified"></span>
         </a>
       </span>
@@ -47,8 +45,7 @@
       </span>
       {{ tool?.tool_path }}<span *ngIf="tool?.tags.length > 0">:</span><span class="ds-green">{{ selectedVersion?.name }}</span>
     </h3>
-
-    <div *ngIf="!publicPage && tool?.tags.length > 0" >
+    <div *ngIf="!publicPage && tool?.tags.length > 0">
       <mat-form-field>
         <mat-select name="toolVersions" [(value)]="selectedVersion" (selectionChange)="onTagChange($event)">
           <mat-option *ngFor="let tag of tool.tags" [value]="tag">{{tag.name}}</mat-option>
@@ -66,7 +63,7 @@
     </div>
   </div>
   <div class="col-12 col-md-5" *ngIf="publicPage">
-    <app-starring [tool]="tool" class="pull-right starring-button" *ngIf="tool" (change)="starGazersChange()"></app-starring>
+    <app-starring [tool]="tool" class="pull-right" *ngIf="tool" (change)="starGazersChange()"></app-starring>
     <h3 class="pull-right">
       <div class="mr-2" *ngIf="tool?.private_access">
         <a mat-raised-button color="accent" [href]="requestAccessHREF">
@@ -84,14 +81,16 @@
     <h3>
       <div class="pull-right my-entry-button-group">
         <div class="row" role="group">
-          <button class="col" id="publishToolButton" mat-flat-button color="accent" (click)="publish()" [(ngModel)]="published"
-            [disabled]="(isRefreshing$ | async) || !this.isContainerValid()" btnCheckbox [matTooltip]="pubUnpubMessage" class="mr-2">
+          <button class="col" id="publishToolButton" mat-flat-button color="accent" (click)="publish()" [(ngModel)]="published" [disabled]="(isRefreshing$ | async) || !this.isContainerValid()"
+            btnCheckbox [matTooltip]="pubUnpubMessage" class="mr-2">
             {{tool?.is_published ? 'Unpublish' : 'Publish'}}
           </button>
-          <button class="col" *ngIf="tool?.is_published" mat-flat-button color="warn" [disabled]="tool?.is_published" matTooltip="Delete the tool" class="mr-2">
+          <button class="col" *ngIf="tool?.is_published" mat-flat-button color="warn" [disabled]="tool?.is_published" matTooltip="Delete the tool"
+            class="mr-2">
             Delete
           </button>
-          <button class="col" *ngIf="!isHosted()" mat-flat-button color="primary" (click)="refresh()" [disabled]="(isRefreshing$ | async)" matTooltip="Sync the tool with the Docker image repository, etc" class="mr-2">
+          <button class="col" *ngIf="!isHosted()" mat-flat-button color="primary" (click)="refresh()" [disabled]="(isRefreshing$ | async)"
+            matTooltip="Sync the tool with the Docker image repository, etc" class="mr-2">
             Refresh
           </button>
           <app-deregister-modal *ngIf="!tool?.is_published" [refreshMessage]="(isRefreshing$ | async)"></app-deregister-modal>
@@ -110,26 +109,21 @@
         </button>
       </mat-chip-list>
     </span>
-
     <span *ngIf="labelsEditMode && !isToolPublic">
       <mat-form-field style="width: 100%;">
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let label of containerEditData?.labels" [removable]="true"
-           (removed)="removeLabel(label)">
+          <mat-chip *ngFor="let label of containerEditData?.labels" [removable]="true" (removed)="removeLabel(label)">
             {{label}}
             <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="New label..."
-                 [matChipInputFor]="chipList"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 [matChipInputAddOnBlur]="true"
-                 (matChipInputTokenEnd)="addToLabels($event)"/>
+          <input placeholder="New label..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addToLabels($event)" />
         </mat-chip-list>
       </mat-form-field>
-      <button type="button"(click)="cancelLabelChanges()" class="btn btn-link" *ngIf="labelsEditMode && !isToolPublic">
-         <span class="glyphicon glyphicon-remove"></span> Cancel
+      <button type="button" (click)="cancelLabelChanges()" class="btn btn-link" *ngIf="labelsEditMode && !isToolPublic">
+        <span class="glyphicon glyphicon-remove"></span> Cancel
       </button>
-      <button type="button"(click)="submitContainerEdits()" class="btn btn-link" *ngIf="labelsEditMode && !isToolPublic">
+      <button type="button" (click)="submitContainerEdits()" class="btn btn-link" *ngIf="labelsEditMode && !isToolPublic">
         <span class="glyphicon glyphicon-floppy-save"></span>Save
       </button>
     </span>
@@ -139,10 +133,12 @@
   <div class="ds-tabs col-sm-12" [ngClass]="{'col-md-9 col-lg-9': isToolPublic}">
     <mat-tab-group dynamicHeight [selectedIndex]="selected.value" id="tool_tabs" #entryTabs mat-stretch-tabs (selectedTabChange)="selectedTabChange($event)">
       <mat-tab id="infoTab" label="Info">
-        <app-info-tab [selectedVersion]="selectedVersion" [privateOnlyRegistry]="privateOnlyRegistry" [extendedDockstoreTool]="(extendedTool$ | async)" [validVersions]="validVersions"></app-info-tab>
+        <app-info-tab [selectedVersion]="selectedVersion" [privateOnlyRegistry]="privateOnlyRegistry" [extendedDockstoreTool]="(extendedTool$ | async)"
+          [validVersions]="validVersions"></app-info-tab>
       </mat-tab>
       <mat-tab id="launchTab" label="Launch">
-        <app-launch *ngIf="tool?.tags.length > 0; else noTags" [basePath]="tool?.path" [selectedVersion]="selectedVersion" [path]="tool?.tool_path" [toolname]="tool?.toolname" [mode]="tool?.mode"></app-launch>
+        <app-launch *ngIf="tool?.tags.length > 0; else noTags" [basePath]="tool?.path" [selectedVersion]="selectedVersion" [path]="tool?.tool_path"
+          [toolname]="tool?.toolname" [mode]="tool?.mode"></app-launch>
         <ng-template #noTags>
           <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> No tags exist for this tool.
@@ -151,38 +147,41 @@
       </mat-tab>
       <mat-tab id="versionTab" label="Versions">
         <div *ngIf="validVersions">
-          <app-versions-container [versions]="tool?.tags" (selectedVersionChange)="onSelectedVersionChange($event)" id="versionsTab" [verifiedSource]="(extendedTool$ | async)?.verifiedSources" [selectedVersion]="selectedVersion">
+          <app-versions-container [versions]="tool?.tags" (selectedVersionChange)="onSelectedVersionChange($event)" id="versionsTab"
+            [verifiedSource]="(extendedTool$ | async)?.verifiedSources" [selectedVersion]="selectedVersion">
           </app-versions-container>
         </div>
       </mat-tab>
       <mat-tab label="Files">
         <ng-template matTabContent>
-        <div *ngIf="validVersions">
-          <div *ngIf="tool?.mode !== DockstoreToolType.ModeEnum.HOSTED">
-            <app-files-container [entrypath]="tool?.tool_path" [id]="tool?.id" [versions]="validVersions" [default]="defaultVersion" [selectedVersion]="selectedVersion">
-            </app-files-container>
+          <div *ngIf="validVersions">
+            <div *ngIf="tool?.mode !== DockstoreToolType.ModeEnum.HOSTED">
+              <app-files-container [entrypath]="tool?.tool_path" [id]="tool?.id" [versions]="validVersions" [default]="defaultVersion"
+                [selectedVersion]="selectedVersion">
+              </app-files-container>
+            </div>
+            <div *ngIf="tool?.mode === DockstoreToolType.ModeEnum.HOSTED">
+              <app-tool-file-editor *ngIf="currentTab === 'files'" [entrypath]="tool.tool_path" [id]="tool?.id" [versions]="validVersions"
+                [default]="defaultVersion" [selectedVersion]="selectedVersion" [publicPage]="publicPage">
+              </app-tool-file-editor>
+            </div>
           </div>
-          <div *ngIf="tool?.mode === DockstoreToolType.ModeEnum.HOSTED">
-            <app-tool-file-editor *ngIf="currentTab === 'files'" [entrypath]="tool.tool_path" [id]="tool?.id" [versions]="validVersions" [default]="defaultVersion" [selectedVersion]="selectedVersion" [publicPage]="publicPage">
-            </app-tool-file-editor>
-          </div>
-        </div>
-      </ng-template>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
     <div *ngIf="publicPage" class="mt-2" id='discourse-comments'></div>
   </div>
   <div class="side-block col-sm-12 col-md-3 col-lg-3 ng-scope " *ngIf="isToolPublic">
-    <div class="panel panel-default" *ngIf="tool">
-      <div class="panel-heading">
-        <h3>Recent Versions</h3>
-      </div>
-      <div class="panel-body">
+    <mat-card class="m-1" *ngIf="tool">
+      <mat-card-header>
+        <mat-card-title>Recent Versions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div>
           <span *ngFor="let sortedVersion of sortedVersions">
             <p class="top-down-padding m-0">
               <span id="verifiedIcon" *ngIf="sortedVersion?.verified">
-                <a href= {{getVerifiedLink()}} class="verified-check">
+                <a href={{getVerifiedLink()}} class="verified-check">
                   <span class="glyphicon glyphicon-ok" matTooltip="Verified"></span>
                 </a>
               </span>
@@ -191,32 +190,34 @@
             </p>
             <hr class="m-0">
           </span>
-          <a (click)="selectTab(2)">See all tags</a>
         </div>
-      </div>
-    </div>
-    <div class="panel panel-default" *ngIf="tool">
-      <div class="panel-heading">
-        <h3>Docker Pull Command</h3>
-      </div>
-      <div class="panel-body">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="selectTab(2)">See all tags</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="tool" class="m-1">
+      <mat-card-header>
+        <mat-card-title>Docker Pull Command</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="panel-body">
         <div class="input-group">
           <input type="text" class="form-control" [(ngModel)]="dockerPullCmd" value="{{dockerPullCmd}}" readonly>
           <span class="input-group-btn">
-            <button class="btn btn-default" [ngClass]="{'btn-copy':toolCopyBtn === 'docker_pull_command'}" type="button" ngxClipboard [cbContent]="dockerPullCmd"
-              (cbOnSuccess)="toolCopyBtnClick('docker_pull_command')">
-              <span class="glyphicon glyphicon-copy"></span>
+            <button mat-stroked-button [ngClass]="{'btn-copy':toolCopyBtn === 'docker_pull_command'}" type="button" ngxClipboard
+              [cbContent]="dockerPullCmd" (cbOnSuccess)="toolCopyBtnClick('docker_pull_command')">
+              <mat-icon>file_copy</mat-icon>
             </button>
           </span>
         </div>
-      </div>
-    </div>
-    <div class="panel panel-default" *ngIf="(extendedTool$ | async)">
-      <div class="panel-heading">
-        <h3>Source Repositories</h3>
-      </div>
-      <div class="panel-body">
-        <div class="container-source-repos">
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="m-1" *ngIf="(extendedTool$ | async)">
+      <mat-card-header>
+        <mat-card-title>Source Repositories</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="column">
           <p>
             Git Repository:
             <span *ngIf="(extendedTool$ | async).provider">
@@ -236,26 +237,27 @@
               </a>
               <span *ngIf="(extendedTool$ | async).imgProviderUrl === null">{{(extendedTool$ | async)?.imgProvider}}</span>
             </span>
-            <span *ngIf="(extendedTool$ | async)?.imgProviderUrl && (extendedTool$ | async).imgProviderUrl.startsWith('https://quay.io')" class="pull-right">
-              <a [href]="(extendedTool$ | async)?.imgProviderUrl" target="_blank">
-                <img src="{{(extendedTool$ | async).imgProviderUrl}}/status">
-              </a>
-            </span>
           </p>
+          <span *ngIf="(extendedTool$ | async)?.imgProviderUrl && (extendedTool$ | async).imgProviderUrl.startsWith('https://quay.io')">
+            <a class="float-right" [href]="(extendedTool$ | async)?.imgProviderUrl" target="_blank">
+              <img src="{{(extendedTool$ | async).imgProviderUrl}}/status">
+            </a>
+          </span>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
     <app-verified-by [version]="selectedVersion"></app-verified-by>
-    <div class="panel panel-default" *ngIf="tool">
-      <div class="panel-heading">
-        <h3>Sharing</h3>
-      </div>
-      <div class="panel-body">
+    <mat-card class="m-1" *ngIf="tool">
+      <mat-card-header>
+        <mat-card-title>Sharing</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div class="container-sharing">
-          <share-buttons [include]="['facebook','twitter','linkedin','reddit']" [show]="5" [showCount]="true" [url]="shareURL" [autoSetMeta]="false"></share-buttons>
+          <share-buttons [include]="['facebook','twitter','linkedin','reddit']" [show]="5" [showCount]="true" [url]="shareURL"
+            [autoSetMeta]="false"></share-buttons>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
     <!-- Re-enable the below once ga4gh/dockstore#442 is complete -->
     <!-- <div class="panel panel-default">
       <div class="panel-heading">

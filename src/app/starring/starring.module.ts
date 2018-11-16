@@ -19,9 +19,11 @@ import { CommonModule } from '@angular/common';
 import { StarringComponent } from './starring.component';
 import { StarringService } from './starring.service';
 import { StarentryService } from '../shared/starentry.service';
+import { CustomMaterialModule } from '../shared/modules/material.module';
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CustomMaterialModule
   ],
   declarations: [
     StarringComponent
