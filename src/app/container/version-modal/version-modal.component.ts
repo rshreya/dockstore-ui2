@@ -38,7 +38,6 @@ import { VersionModalService } from './version-modal.service';
 import { MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-version-modal',
   templateUrl: './version-modal.component.html',
   styleUrls: ['./version-modal.component.css']
 })

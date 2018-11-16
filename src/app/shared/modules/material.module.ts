@@ -40,8 +40,10 @@ import {
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatBadgeModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSlideToggleModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -70,7 +72,9 @@ import {
     MatMenuModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    FlexLayoutModule
   ],
   exports: [
     MatButtonModule,
@@ -98,7 +102,9 @@ import {
     MatMenuModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    FlexLayoutModule
   ]
 })
 export class CustomMaterialModule { }
