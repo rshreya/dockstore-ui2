@@ -137,11 +137,14 @@ export class RegisterCheckerWorkflowComponent extends Base implements OnInit, Af
   }
 
   /**
-   * Handles the event where the descriptor type in the form has changed
+   * Handles the event where the descriptor type in the form has changed but only replace if there is a default
    * @param descriptorType The descriptor type current selected in the form
    */
   public onDescriptorTypeChange(descriptorType: ToolDescriptor.TypeEnum): void {
-    this.testParameterFilePath = this.getTestParameterFileDefault(this.entry, descriptorType);
+    const defaultTestParameterFile = this.getTestParameterFileDefault(this.entry, descriptorType);
+    if (defaultTestParameterFile) {
+      this.testParameterFilePath = defaultTestParameterFile;
+    }
   }
 
   // Validation starts here, should move most of these to a service somehow

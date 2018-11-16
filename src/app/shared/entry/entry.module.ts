@@ -15,6 +15,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
@@ -23,6 +24,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ClipboardModule } from 'ngx-clipboard';
 
+import { RefreshAlertModule } from '../alert/alert.module';
 import { CodeEditorListComponent } from '../code-editor-list/code-editor-list.component';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { PublicFileDownloadPipe } from '../entry/public-file-download.pipe';
@@ -35,17 +37,17 @@ import { LaunchCheckerWorkflowComponent } from './launch-checker-workflow/launch
 import { PrivateFileDownloadPipe } from './private-file-download.pipe';
 import { PrivateFilePathPipe } from './private-file-path.pipe';
 import { RegisterCheckerWorkflowComponent } from './register-checker-workflow/register-checker-workflow.component';
+import { UrlDeconstructPipe } from './url-deconstruct.pipe';
 import { VerifiedByComponent } from './verified-by/verified-by.component';
 import { VerifiedDisplayComponent } from './verified-display/verified-display.component';
 import { VerifiedPlatformsPipe } from './verified-platforms.pipe';
 import { VersionProviderUrlPipe } from './versionProviderUrl.pipe';
-import { RefreshAlertModule } from '../alert/alert.module';
-import { UrlDeconstructPipe } from './url-deconstruct.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     TooltipModule.forRoot(),
+    FlexLayoutModule,
     FormsModule,
     ModalModule,
     CustomMaterialModule,
@@ -53,7 +55,7 @@ import { UrlDeconstructPipe } from './url-deconstruct.pipe';
     ClipboardModule,
     RouterModule,
     RefreshAlertModule,
-    ShareButtonsModule.forRoot()
+    ShareButtonsModule.forRoot(),
   ],
   declarations: [
     InfoTabCheckerWorkflowPathComponent,
