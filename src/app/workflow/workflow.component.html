@@ -169,14 +169,11 @@
       </mat-tab>
       <mat-tab id="dagTab" label="DAG">
         <ng-template matTabContent>
-          <div *ngIf="validVersions && !isStub()">
-            <app-dag [id]="workflow?.id" [validVersions]="validVersions" [defaultVersion]="defaultVersion" [selectedVersion]="selectedVersion"
-              [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-dag>
-          </div>
-          <div *ngIf="isStub()" class="alert alert-warning" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see the DAG, please refresh the workflow.
-          </div>
-        </ng-template>
+            <app-dag [id]="workflow?.id" [selectedVersion]="selectedVersion" [canRead]="canRead" [canWrite]="canWrite" [isOwner]="isOwner"></app-dag>
+        <div *ngIf="isStub()" class="alert alert-warning" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> To see the DAG, please refresh the workflow.
+        </div>
+      </ng-template>
       </mat-tab>
       <mat-tab *ngIf="!isPublic() && isHosted() && isOwner" id="permissionsTab" label="Permissions">
         <app-permissions [workflow]="workflow"></app-permissions>
