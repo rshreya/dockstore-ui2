@@ -16,18 +16,19 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   CheckerWorkflowStubService,
   DescriptorLanguageStubService,
   RegisterCheckerWorkflowStubService,
 } from '../../../test/service-stubs';
+import { DescriptorTypeCompatService } from '../../descriptor-type-compat.service';
+import { CustomMaterialModule } from '../../modules/material.module';
 import { CheckerWorkflowService } from '../../state/checker-workflow.service';
 import { DescriptorLanguageService } from '../descriptor-language.service';
 import { RegisterCheckerWorkflowComponent } from './register-checker-workflow.component';
 import { RegisterCheckerWorkflowService } from './register-checker-workflow.service';
-import { DescriptorTypeCompatService } from '../../descriptor-type-compat.service';
 
 describe('RegisterCheckerWorkflowComponent', () => {
   let component: RegisterCheckerWorkflowComponent;
@@ -37,7 +38,7 @@ describe('RegisterCheckerWorkflowComponent', () => {
     TestBed.configureTestingModule({
       declarations: [RegisterCheckerWorkflowComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [FormsModule, MatSnackBarModule, MatDialogModule],
+      imports: [FormsModule, BrowserAnimationsModule, CustomMaterialModule],
       providers: [{provide: RegisterCheckerWorkflowService, useClass: RegisterCheckerWorkflowStubService},
         {provide: CheckerWorkflowService, useClass: CheckerWorkflowStubService },
         DescriptorTypeCompatService,
