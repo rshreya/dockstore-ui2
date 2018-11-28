@@ -95,6 +95,7 @@ In `dockstore-webservice`, the `dockstore.yml` being served <b>must be edited to
 
 ## Pre-build/serve
 
+Check .travis.yml for the webservice version and set the environment variable using `export WEBSERVICE_VERSION="1.5.1"`
 Run `npm run prebuild` before running or building the project. This command will:
 - generate a file which contains the UI tag version 
 - download the openapi codegen
