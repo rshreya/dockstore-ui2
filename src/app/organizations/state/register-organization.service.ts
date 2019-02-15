@@ -182,8 +182,8 @@ export class RegisterOrganizationService {
         link: organizationFormState.link,
         location: organizationFormState.location,
         email: organizationFormState.contactEmail,
-        avatarUrl: organizationFormState.avatarUrl,
         status: Organization.StatusEnum.PENDING,
+        avatarUrl: organizationFormState.avatarUrl,
         description: organizationDescription,
         users: []
       };
