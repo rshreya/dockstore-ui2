@@ -18,6 +18,7 @@ export interface FormsState {
     link: string;
     location: string;
     contactEmail: string;
+    avatarUrl: string;
   };
 }
 
@@ -83,6 +84,7 @@ export class RegisterOrganizationService {
     let link = null;
     let location = null;
     let contactEmail = null;
+    let avatarUrl = null;
     if (data.mode !== TagEditorMode.Add) {
       const organization: Organization = data.organization;
       name = organization.name;
@@ -90,6 +92,7 @@ export class RegisterOrganizationService {
       link = organization.link;
       location = organization.location;
       contactEmail = organization.email;
+      avatarUrl = organization.avatarUrl;
     }
     const registerOrganizationForm = this.builder.group({
       name: [name, [
@@ -102,6 +105,7 @@ export class RegisterOrganizationService {
       link: [link, Validators.pattern(this.urlRegex)],
       location: [location],
       contactEmail: [contactEmail, [Validators.email]],
+      avatarUrl: [avatarUrl, Validators.pattern(this.urlRegex)]
     });
     formsManager.upsert('registerOrganization', registerOrganizationForm);
     return registerOrganizationForm;
@@ -138,6 +142,7 @@ export class RegisterOrganizationService {
         location: organizationFormState.location,
         email: organizationFormState.contactEmail,
         status: Organization.StatusEnum.PENDING,
+        avatarUrl: organizationFormState.avatarUrl,
         users: []
       };
       this.alertService.start('Adding organization');
@@ -177,6 +182,7 @@ export class RegisterOrganizationService {
         link: organizationFormState.link,
         location: organizationFormState.location,
         email: organizationFormState.contactEmail,
+        avatarUrl: organizationFormState.avatarUrl,
         status: Organization.StatusEnum.PENDING,
         description: organizationDescription,
         users: []
