@@ -50,6 +50,13 @@ export class RegisterOrganizationService {
   // The old regex in case needed
   // readonly urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   readonly organizationNameRegex = /^[a-zA-Z][a-zA-Z\d]*$/;
+
+  // Only accept url links of logos hosted on github or gravatar.
+  readonly logoUrlRegex = new RegExp(
+    '^' +
+    '((https://avatars)\\d(\\.githubusercontent.com\\/u\\/)(.*))|((https://www.gravatar.com/avatar/)(.*))'
+  );
+
   constructor(private organizationsService: OrganizationsService, private alertService: AlertService, private matDialog: MatDialog,
     private router: Router, private organizationService: OrganizationService, private builder: FormBuilder) {
   }
@@ -105,7 +112,7 @@ export class RegisterOrganizationService {
       link: [link, Validators.pattern(this.urlRegex)],
       location: [location],
       contactEmail: [contactEmail, [Validators.email]],
-      avatarUrl: [avatarUrl, Validators.pattern(this.urlRegex)]
+      avatarUrl: [avatarUrl, Validators.pattern(this.logoUrlRegex)],
     });
     formsManager.upsert('registerOrganization', registerOrganizationForm);
     return registerOrganizationForm;
